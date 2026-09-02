@@ -1,5 +1,4 @@
-import webbrowser
-from threading import Timer
+import os
 
 import numpy as np
 import plotly.express as px
@@ -28,6 +27,7 @@ def fit_stats(dff):
 
 
 app = Dash(__name__)
+server = app.server
 app.title = "Python & Data Analytics - live demo"
 
 app.layout = html.Div(
@@ -95,10 +95,6 @@ def update(year, continents):
     return fig, stats_panel
 
 
-def _open():
-    webbrowser.open_new("http://127.0.0.1:8050")
-
-
 if __name__ == "__main__":
-    Timer(1.2, _open).start()
-    app.run(debug=False, port=8050)
+    port = int(os.environ.get("PORT", 8050))
+    app.run(debug=False, host="0.0.0.0", port=port)

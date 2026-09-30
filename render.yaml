@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: data-mining-seminar-demo
-    env: python
-    plan: free
-    rootDir: demo
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn dash_demo:server
